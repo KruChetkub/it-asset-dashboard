@@ -36,7 +36,8 @@ export const parseCSV = (text) => {
       dept: cleanCol[28]?.replace('\r', '').trim() || '',
       healthScore: health.score,
       healthGrade: health.grade,
-      healthColor: health.color
+      healthColor: health.color,
+      scoreBreakdown: health.breakdown
     });
   }
   
@@ -84,7 +85,17 @@ const calculateHealthScore = ({ memory, hdd1, os, hdd1Hours }) => {
     color = 'text-orange-500 bg-orange-50 border-orange-200';
   }
 
-  return { score, grade, color };
+  return { 
+    score, 
+    grade, 
+    color,
+    breakdown: {
+      ramScore: parseInt(memory) >= 16 ? 30 : parseInt(memory) >= 8 ? 20 : 5,
+      diskScore: (hdd1 || '').toLowerCase().includes('nvme') || (hdd1 || '').toLowerCase().includes('m.2') ? 40 : (hdd1 || '').toLowerCase().includes('ssd') ? 30 : 10,
+      osScore: (os || '').toLowerCase().includes('windows 11') ? 30 : (os || '').toLowerCase().includes('windows 10') ? 20 : 0,
+      penalty: hdd1Hours > 43800 ? -20 : 0
+    }
+  };
 };
 
 export const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f97316', '#eab308', '#22c55e', '#06b6d4'];

@@ -130,6 +130,61 @@ const AssetDetailModal = ({ asset, onClose }) => {
              </div>
           </div>
           
+          {/* Score Breakdown Section */}
+        {asset.scoreBreakdown && (
+            <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mb-6 border border-slate-100 dark:border-slate-700">
+                <h4 className="text-sm font-semibold text-slate-800 dark:text-white mb-3 flex items-center gap-2">
+                    <Activity className="w-4 h-4 text-indigo-500" />
+                    รายละเอียดคะแนน (Score Breakdown)
+                </h4>
+                <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center">
+                        <span className="text-slate-600 dark:text-slate-300">RAM ({asset.memory || 0} GB)</span>
+                        <span className="font-mono font-medium text-slate-900 dark:text-white bg-white dark:bg-slate-600 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-500">
+                             + {asset.scoreBreakdown.ramScore}
+                        </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                        <span className="text-slate-600 dark:text-slate-300">Disk Type ({asset.hdd1})</span>
+                         <span className="font-mono font-medium text-slate-900 dark:text-white bg-white dark:bg-slate-600 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-500">
+                             + {asset.scoreBreakdown.diskScore}
+                        </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                        <span className="text-slate-600 dark:text-slate-300">OS ({asset.os})</span>
+                         <span className="font-mono font-medium text-slate-900 dark:text-white bg-white dark:bg-slate-600 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-500">
+                             + {asset.scoreBreakdown.osScore}
+                        </span>
+                    </div>
+                     <div className="flex justify-between items-center">
+                        <span className="text-slate-600 dark:text-slate-300">
+                            Age Penalty 
+                            <span className="text-xs text-slate-400 ml-1">
+                                ({(asset.hdd1Hours || 0).toLocaleString()} hrs)
+                            </span>
+                        </span>
+                        <span className={`font-mono font-medium px-2 py-0.5 rounded border ${
+                            asset.scoreBreakdown.penalty < 0 
+                            ? 'bg-red-50 text-red-600 border-red-200' 
+                            : 'bg-green-50 text-green-600 border-green-200'
+                        }`}>
+                             {asset.scoreBreakdown.penalty}
+                        </span>
+                    </div>
+                     <div className="border-t border-slate-200 dark:border-slate-600 mt-2 pt-2 flex justify-between items-center font-bold">
+                        <span className="text-slate-800 dark:text-white">Total Score</span>
+                        <span className={`text-lg ${
+                            asset.healthScore >= 80 ? 'text-green-600' :
+                            asset.healthScore >= 60 ? 'text-blue-600' :
+                            asset.healthScore >= 40 ? 'text-orange-500' : 'text-red-500'
+                        }`}>
+                            {asset.healthScore} / 100
+                        </span>
+                    </div>
+                </div>
+            </div>
+        )}
+
           <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
              <div className="grid grid-cols-2 gap-4 text-xs text-slate-500 dark:text-slate-400">
                 <div>
