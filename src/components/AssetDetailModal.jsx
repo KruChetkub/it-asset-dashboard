@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, CheckCircle2, AlertCircle, Monitor, Cpu, HardDrive, User, Building, Activity } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, Monitor, Cpu, HardDrive, User, Building, Activity, Calendar } from 'lucide-react';
 
 const AssetDetailModal = ({ asset, onClose }) => {
   if (!asset) return null;
@@ -67,6 +67,16 @@ const AssetDetailModal = ({ asset, onClose }) => {
                  <div>
                    <p className="text-xs text-slate-400">กลุ่มงาน (Department)</p>
                    <p className="text-slate-700 dark:text-slate-200 font-medium">{asset.dept}</p>
+                 </div>
+               </div>
+
+               
+               <div className="flex items-start gap-3">
+                 <Calendar className="w-5 h-5 text-slate-400 mt-0.5" />
+                 <div>
+                   <p className="text-xs text-slate-400">อายุการใช้งาน (Age)</p>
+                   <p className="text-slate-700 dark:text-slate-200 font-medium">{asset.age}</p>
+                   <p className="text-xs text-slate-500">วันที่รับ: {asset.receivedDate || '-'}</p>
                  </div>
                </div>
              </div>

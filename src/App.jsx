@@ -410,9 +410,9 @@ function App() {
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">OS / CPU / RAM</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Disk 1 / Disk 2</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-center">คุณภาพ</th>
-                       <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-center">อายุ (ปี)</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-right">ชม.ทำงาน</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">กลุ่มงาน</th>
+                       <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-center">อายุ (ปี)</th>
                      </tr>
                    </thead>
                    <tbody className="divide-y divide-slate-100 dark:divide-slate-700 text-sm">
@@ -448,6 +448,7 @@ function App() {
                                 </div>
                              )}
                            </td>
+
                            <td className="py-3 px-2 text-center">
                              <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm border ${item.healthColor}`}>
                                {item.healthGrade}
@@ -465,6 +466,9 @@ function App() {
                            </td>
                            <td className="py-3 px-2 text-slate-600 dark:text-slate-400 truncate max-w-[150px]" title={item.dept}>
                              {item.dept || '-'}
+                           </td>
+                           <td className="py-3 px-2 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                               {item.age}
                            </td>
                          </tr>
                        ))
