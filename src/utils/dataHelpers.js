@@ -32,8 +32,32 @@ export const parseCSV = (text) => {
       hdd1Hours: parseInt(cleanCol[15]?.replace(/,/g, '')) || 0,
       hdd2: cleanCol[16] || '',
       hdd2Hours: parseInt(cleanCol[19]?.replace(/,/g, '')) || 0,
+      
+    // Calculate Age
+    const receivedDate = cleanCol[29] || '';
+    const ageData = calculateAssetAge(receivedDate);
+      
+
+
+
+    newData.push({
+      id: cleanCol[1] || '',
+      user: cleanCol[26] || '',
+      computerName: cleanCol[2] || '',
+      type: cleanCol[4] || '',
+      os: cleanCol[5] || '',
+      cpu: cleanCol[7] || '',
+      memory: cleanCol[9] || '',
+      gpu: cleanCol[10] || '',
+      hdd1: cleanCol[12] || '',
+      hdd1Hours: parseInt(cleanCol[15]?.replace(/,/g, '')) || 0,
+      hdd2: cleanCol[16] || '',
+      hdd2Hours: parseInt(cleanCol[19]?.replace(/,/g, '')) || 0,
       totalDiskHours: parseInt(cleanCol[20]?.replace(/,/g, '')) || 0,
       dept: cleanCol[28]?.replace('\r', '').trim() || '',
+      receivedDate: receivedDate,
+      age: ageData.text,
+      ageYears: ageData.years,
       healthScore: health.score,
       healthGrade: health.grade,
       healthColor: health.color,
@@ -42,6 +66,46 @@ export const parseCSV = (text) => {
   }
   
   return newData.filter(item => item.id || item.computerName);
+};
+
+const calculateAssetAge = (dateStr) => {
+  if (!dateStr) return { text: '-', years: 0 };
+
+  try {
+    const parts = dateStr.split('/');
+    if (parts.length !== 3) return { text: '-', years: 0 };
+
+    const day = parseInt(parts[0]);
+    const month = parseInt(parts[1]) - 1; // JS months are 0-11
+    // Convert Thai Year (BE) to AD
+    let year = parseInt(parts[2]);
+    if (year > 2400) year -= 543;
+
+    const receivedDate = new Date(year, month, day);
+    const now = new Date();
+
+    let years = now.getFullYear() - receivedDate.getFullYear();
+    let months = now.getMonth() - receivedDate.getMonth();
+
+    if (months < 0 || (months === 0 && now.getDate() < receivedDate.getDate())) {
+      years--;
+      months += 12;
+    }
+
+    if (now.getDate() < receivedDate.getDate()) {
+        months--;
+    }
+    
+    // Adjust logic for display
+    if (years < 0) return { text: 'New', years: 0 };
+
+    return { 
+        text: `${years} ปี ${months > 0 ? months + ' เดือน' : ''}`, 
+        years: years + (months/12) 
+    };
+  } catch (e) {
+    return { text: '-', years: 0 };
+  }
 };
 
 const calculateHealthScore = ({ memory, hdd1, os, hdd1Hours }) => {

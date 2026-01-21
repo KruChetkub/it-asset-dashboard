@@ -410,6 +410,7 @@ function App() {
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">OS / CPU / RAM</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Disk 1 / Disk 2</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-center">คุณภาพ</th>
+                       <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-center">อายุ (ปี)</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase text-right">ชม.ทำงาน</th>
                        <th className="pb-3 px-2 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">กลุ่มงาน</th>
                      </tr>
