@@ -64,7 +64,7 @@ const calculateHealthScore = ({ memory, hdd1, os, hdd1Hours }) => {
   else if (osName.includes('windows 10')) score += 20;
   
   // 4. Usage Penalty
-  if (hdd1Hours > 20000) score -= 20;
+  if (hdd1Hours > 43800) score -= 20;
 
   // Clamp score 0-100
   score = Math.max(0, Math.min(100, score));

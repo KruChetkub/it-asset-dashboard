@@ -455,8 +455,8 @@ function App() {
                            </td>
                            <td className="py-3 px-2 text-right">
                              <div className={`font-mono font-medium ${
-                                item.hdd1Hours > 20000 ? 'text-red-500' : 
-                                item.hdd1Hours > 10000 ? 'text-yellow-500' : 'text-green-500'
+                                item.hdd1Hours > 43800 ? 'text-red-500' : 
+                                item.hdd1Hours > 20000 ? 'text-yellow-500' : 'text-green-500'
                              }`}>
                                {item.hdd1Hours.toLocaleString()}
                              </div>

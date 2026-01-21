@@ -97,7 +97,7 @@ const AssetDetailModal = ({ asset, onClose }) => {
                  <div>
                    <p className="text-xs text-slate-400">Storage (Disk 1)</p>
                    <p className="text-slate-700 dark:text-slate-200 font-medium">{asset.hdd1}</p>
-                   <p className={`text-xs ${asset.hdd1Hours > 20000 ? 'text-red-500 font-bold' : 'text-slate-500'}`}>
+                   <p className={`text-xs ${asset.hdd1Hours > 43800 ? 'text-red-500 font-bold' : 'text-slate-500'}`}>
                      ใช้งาน: {(asset.hdd1Hours || 0).toLocaleString()} ชม.
                    </p>
                  </div>
@@ -110,7 +110,7 @@ const AssetDetailModal = ({ asset, onClose }) => {
                       <div>
                         <p className="text-xs text-slate-400">Storage (Disk 2)</p>
                         <p className="text-slate-700 dark:text-slate-200 font-medium">{asset.hdd2}</p>
-                        <p className={`text-xs ${asset.hdd2Hours > 20000 ? 'text-red-500 font-bold' : 'text-slate-500'}`}>
+                        <p className={`text-xs ${asset.hdd2Hours > 43800 ? 'text-red-500 font-bold' : 'text-slate-500'}`}>
                            ใช้งาน: {(asset.hdd2Hours || 0).toLocaleString()} ชม.
                         </p>
                       </div>
