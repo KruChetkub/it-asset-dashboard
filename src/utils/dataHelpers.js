@@ -12,33 +12,16 @@ export const parseCSV = (text) => {
 
     if (cleanCol.length < 5) continue;
     
+    // Calculate Age
+    const receivedDate = cleanCol[29] || '';
+    const ageData = calculateAssetAge(receivedDate);
+    
     const health = calculateHealthScore({
       memory: cleanCol[9],
       hdd1: cleanCol[12],
       os: cleanCol[5],
       hdd1Hours: parseInt(cleanCol[15]?.replace(/,/g, '')) || 0
     });
-
-    newData.push({
-      id: cleanCol[1] || '',
-      user: cleanCol[26] || '',
-      computerName: cleanCol[2] || '',
-      type: cleanCol[4] || '',
-      os: cleanCol[5] || '',
-      cpu: cleanCol[7] || '',
-      memory: cleanCol[9] || '',
-      gpu: cleanCol[10] || '',
-      hdd1: cleanCol[12] || '',
-      hdd1Hours: parseInt(cleanCol[15]?.replace(/,/g, '')) || 0,
-      hdd2: cleanCol[16] || '',
-      hdd2Hours: parseInt(cleanCol[19]?.replace(/,/g, '')) || 0,
-      
-    // Calculate Age
-    const receivedDate = cleanCol[29] || '';
-    const ageData = calculateAssetAge(receivedDate);
-      
-
-
 
     newData.push({
       id: cleanCol[1] || '',
